@@ -1,0 +1,257 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- ===========================
+         Page Header
+    ============================ -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold mb-1">
+
+                <i class="bi bi-bar-chart-line-fill text-primary"></i>
+
+                Reports Dashboard
+
+            </h2>
+
+            <p class="text-muted mb-0">
+
+                Monitor office performance and generate comprehensive reports
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <a href="/monthly_report" class="btn btn-primary me-2">
+
+                <i class="bi bi-calendar3"></i>
+
+                Monthly Report
+
+            </a>
+
+            <a href="/export_excel" class="btn btn-outline-success">
+                <i class="bi bi-file-earmark-excel"></i>
+                Export Excel
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ===========================
+         Summary Cards
+    ============================ -->
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="report-stat report-blue">
+                <h6>Total Employees</h6>
+                <h2>{{ employee_count }}</h2>
+                <small>Office Staff</small>
+                <i class="bi bi-people-fill"></i>
+            </div>
+        </div>
+    
+        <div class="col-lg-3 col-md-6">
+            <div class="report-stat report-green">
+                <h6>Total Tasks</h6>
+                <h2>{{ task_count }}</h2>
+                <small>Assigned Tasks</small>
+                <i class="bi bi-list-task"></i>
+            </div>
+        </div>
+    
+        <div class="col-lg-3 col-md-6">
+            <div class="report-stat report-orange">
+                <h6>Total Letters</h6>
+                <h2>{{ letter_count }}</h2>
+                <small>Received Letters</small>
+                <i class="bi bi-envelope-fill"></i>
+            </div>
+        </div>
+    
+        <div class="col-lg-3 col-md-6">
+            <div class="report-stat report-red">
+                <h6>Total Attendance</h6>
+                <h2>{{ attendance_count }}</h2>
+                <small>Attendance Records</small>
+                <i class="bi bi-calendar-check-fill"></i>
+            </div>
+        </div>
+    
+    </div>
+
+    <!-- ===========================
+     Quick Reports
+=========================== -->
+
+<div class="row">
+
+    <div class="col-12">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+                    <i class="bi bi-folder2-open text-primary"></i>
+                    Quick Reports
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-4">
+
+                    <!-- Employee -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/employee_report" class="quick-report">
+
+                            <div class="quick-report-icon icon-blue">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                        
+                            <div class="quick-report-content">
+                        
+                                <h5>Employee Report</h5>
+                        
+                                <p>View all employee information.</p>
+                        
+                                <span>Open Report →</span>
+                        
+                            </div>
+                        
+                        </a>
+                    </div>
+
+                    <!-- Task -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/task_report" class="quick-report">
+
+                            <div class="quick-report-icon icon-green">
+                                <i class="bi bi-list-task"></i>
+                            </div>
+                        
+                            <div class="quick-report-content">
+                        
+                                <h5>Task Report</h5>
+                        
+                                <p>View assigned task summary.</p>
+                        
+                                <span>Open Report →</span>
+                        
+                            </div>
+                        
+                        </a>                                    
+                    </div>
+
+                    <!-- Attendance -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/attendance_report" class="quick-report">
+
+                            <div class="quick-report-icon icon-red">
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                        
+                            <div class="quick-report-content">
+                        
+                                <h5>Attendance Report</h5>
+                        
+                                <p>Daily attendance summary.</p>
+                        
+                                <span>Open Report →</span>
+                        
+                            </div>
+                        
+                        </a>
+                    </div>
+
+                    <!-- Letter -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/letter_report" class="quick-report">
+
+                            <div class="quick-report-icon icon-orange">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                        
+                            <div class="quick-report-content">
+                        
+                                <h5>Letter Report</h5>
+                        
+                                <p>Incoming &amp; assigned letters.</p>
+                        
+                                <span>Open Report →</span>
+                        
+                            </div>
+                        
+                        </a>
+                    </div>
+
+                    <!-- Monthly -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/monthly_report" class="quick-report">
+
+                            <div class="quick-report-icon icon-blue">
+                                <i class="bi bi-calendar3"></i>
+                            </div>
+                        
+                            <div class="quick-report-content">
+                        
+                                <h5>Monthly Activity Report</h5>
+                        
+                                <p>Employee monthly performance.</p>
+                        
+                                <span>Open Report →</span>
+                        
+                            </div>
+                        
+                        </a>
+                    </div>
+
+                    <!-- Dashboard -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/home" class="quick-report">
+
+                            <div class="quick-report-icon icon-green">
+                                <i class="bi bi-speedometer2"></i>
+                            </div>
+                        
+                            <div class="quick-report-content">
+                        
+                                <h5>Dashboard</h5>
+                        
+                                <p>Return to Dashboard.</p>
+                        
+                                <span>Go to Dashboard →</span>
+                        
+                            </div>
+                        
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Office Work Analysis Dashboard</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background:#f2f2f2;
+            margin:0;
+        }
+
+        .header{
+            background:#0d6efd;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            margin-top:30px;
+        }
+
+        .card{
+            width:220px;
+            display:inline-block;
+            background:white;
+            margin:15px;
+            padding:25px;
+            text-align:center;
+            border-radius:10px;
+            box-shadow:0px 0px 8px gray;
+        }
+
+        .card a{
+            text-decoration:none;
+            color:black;
+            font-size:18px;
+            font-weight:bold;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:40px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>Office Work Analysis System</h1>
+
+<h3>Welcome {{username}}</h3>
+
+</div>
+
+<div class="container">
+    <div class="card">
+        <a href="/dashbaord">Dashbaord</a>
+        </div>
+<div class="card">
+<a href="/employees">Employee Management</a>
+</div>
+
+<div class="card">
+<a href="/tasks">Task Management</a>
+</div>
+
+<div class="card">
+<a href="/attendance">Attendance</a>
+</div>
+
+<div class="card">
+<a href="/dailywork">Daily Work</a>
+</div>
+
+<div class="card">
+<a href="/reports">Reports</a>
+</div>
+
+<div class="card">
+<a href="/">Logout</a>
+</div>
+
+</div>
+
+<div class="footer">
+
+<h3>Office Work Analysis System</h3>
+
+</div>
+
+</body>
+</html>

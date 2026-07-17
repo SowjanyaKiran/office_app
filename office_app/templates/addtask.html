@@ -1,0 +1,240 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3 class="mb-0">
+                <i class="bi bi-list-task"></i>
+                Assign New Task
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/savetask" method="POST">
+
+                <div class="row">
+
+                    <!-- Employee -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Employee
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="employee_id"
+                            required>
+
+                            <option value="">Select Employee</option>
+
+                            {% for emp in employees %}
+
+                            <option value="{{ emp.employee_id }}">
+
+                                {{ emp.employee_name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <!-- Task Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Task Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="task_name"
+                            placeholder="Enter Task Name"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <!-- Description -->
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+
+                        Description
+
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        name="description"
+                        rows="4"
+                        placeholder="Enter Task Description"></textarea>
+
+                </div>
+
+                <div class="row">
+
+                    <!-- Assigned Date -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Assigned Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="assigned_date"
+                            required>
+
+                    </div>
+
+                    <!-- Due Date -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Due Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="due_date"
+                            required>
+
+                    </div>
+
+                    <!-- Priority -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Priority
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="priority">
+
+                            <option>High</option>
+
+                            <option>Medium</option>
+
+                            <option>Low</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Status -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Status
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="status">
+
+                            <option>Pending</option>
+
+                            <option>In Progress</option>
+
+                            <option>Completed</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Remarks -->
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+
+                        Remarks
+
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        name="remarks"
+                        rows="3"
+                        placeholder="Additional Remarks"></textarea>
+
+                </div>
+
+                <hr>
+
+                <button
+                    type="submit"
+                    class="btn btn-success btn-lg">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Save Task
+
+                </button>
+
+                <a
+                    href="/tasks"
+                    class="btn btn-secondary btn-lg">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+                <button
+                    type="reset"
+                    class="btn btn-warning btn-lg">
+
+                    <i class="bi bi-arrow-clockwise"></i>
+
+                    Reset
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

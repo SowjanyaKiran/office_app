@@ -1,0 +1,258 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="card shadow">
+
+<div class="card-header bg-primary text-white">
+
+<h3>
+
+<i class="bi bi-calendar-plus"></i>
+
+Employee Attendance
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<form action="/saveattendance" method="POST">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+Employee
+
+</label>
+
+<select
+name="employee_id"
+class="form-select"
+required>
+
+<option value="">
+
+Select Employee
+
+</option>
+
+{% for e in employees %}
+
+<option value="{{e.employee_id}}">
+
+{{e.employee_name}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+Attendance Date
+
+</label>
+
+<input
+type="date"
+name="attendance_date"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+Attendance Status
+
+</label>
+
+<select
+name="attendance_status"
+id="attendance_status"
+class="form-select"
+required
+onchange="toggleLeaveFields()">
+
+<option>Present</option>
+
+<option>Absent</option>
+
+<option>Half Day</option>
+
+<option>On Duty</option>
+
+<option>Leave</option>
+
+<option>Work From Home</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6" id="leaveTypeWrapper">
+
+<label class="form-label">
+
+Leave Type
+
+</label>
+
+<select
+name="leave_type"
+class="form-select">
+
+<option value="">Select</option>
+
+<option>Official Duty</option>
+
+<option>Personal Work</option>
+
+<option>Casual Leave</option>
+
+<option>Medical Leave</option>
+
+<option>Earned Leave</option>
+
+<option>Training</option>
+
+<option>Tour</option>
+
+<option>Permission</option>
+
+<option>Holiday</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<div id="purposeWrapper">
+
+<label class="form-label">
+
+Purpose
+
+</label>
+
+<textarea
+name="purpose"
+class="form-control"
+rows="3"
+placeholder="Purpose of Leave / Official Duty"></textarea>
+
+</div>
+
+<br>
+
+<div id="remarksWrapper">
+
+<label class="form-label">
+
+Remarks
+
+</label>
+
+<textarea
+name="remarks"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<br>
+
+<button
+class="btn btn-success btn-lg">
+
+<i class="bi bi-check-circle"></i>
+
+Save Attendance
+
+</button>
+
+<a
+href="/attendance"
+class="btn btn-secondary btn-lg">
+
+Back
+
+</a>
+
+<button
+type="reset"
+class="btn btn-warning btn-lg"
+onclick="setTimeout(toggleLeaveFields, 0)">
+
+Reset
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+function toggleLeaveFields() {
+
+    var status = document.getElementById("attendance_status").value;
+
+    var leaveTypeWrapper = document.getElementById("leaveTypeWrapper");
+    var purposeWrapper = document.getElementById("purposeWrapper");
+    var remarksWrapper = document.getElementById("remarksWrapper");
+
+    var leaveTypeSelect = leaveTypeWrapper.querySelector("select");
+    var purposeTextarea = purposeWrapper.querySelector("textarea");
+    var remarksTextarea = remarksWrapper.querySelector("textarea");
+
+    if (status === "Present") {
+
+        leaveTypeWrapper.style.display = "none";
+        purposeWrapper.style.display = "none";
+        remarksWrapper.style.display = "none";
+
+        leaveTypeSelect.value = "";
+        purposeTextarea.value = "";
+        remarksTextarea.value = "";
+
+    } else {
+
+        leaveTypeWrapper.style.display = "block";
+        purposeWrapper.style.display = "block";
+        remarksWrapper.style.display = "block";
+
+    }
+}
+
+// Run once on page load in case "Present" is the default selected option
+document.addEventListener("DOMContentLoaded", toggleLeaveFields);
+</script>
+
+{% endblock %}

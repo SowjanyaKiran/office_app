@@ -1,0 +1,219 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-warning text-dark">
+
+            <h3 class="mb-0">
+                <i class="bi bi-pencil-square"></i>
+                Edit Task
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/updatetask" method="POST">
+
+                <input
+                    type="hidden"
+                    name="task_id"
+                    value="{{ task.task_id }}">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Employee
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="employee_id"
+                            required>
+
+                            {% for emp in employees %}
+
+                            <option
+                                value="{{ emp.employee_id }}"
+                                {% if emp.employee_id == task.employee_id %}selected{% endif %}>
+
+                                {{ emp.employee_name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Task Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="task_name"
+                            value="{{ task.task_name }}"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+                        Description
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        name="description"
+                        rows="4">{{ task.description }}</textarea>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Assigned Date
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="assigned_date"
+                            value="{{ task.assigned_date }}">
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Due Date
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="due_date"
+                            value="{{ task.due_date }}">
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Priority
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="priority">
+
+                            <option value="High"
+                            {% if task.priority=="High" %}selected{% endif %}>
+                                High
+                            </option>
+
+                            <option value="Medium"
+                            {% if task.priority=="Medium" %}selected{% endif %}>
+                                Medium
+                            </option>
+
+                            <option value="Low"
+                            {% if task.priority=="Low" %}selected{% endif %}>
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Status
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="status">
+
+                            <option value="Pending"
+                            {% if task.status=="Pending" %}selected{% endif %}>
+                                Pending
+                            </option>
+
+                            <option value="In Progress"
+                            {% if task.status=="In Progress" %}selected{% endif %}>
+                                In Progress
+                            </option>
+
+                            <option value="Completed"
+                            {% if task.status=="Completed" %}selected{% endif %}>
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+                        Remarks
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        name="remarks"
+                        rows="3">{{ task.remarks }}</textarea>
+
+                </div>
+
+                <hr>
+
+                <button
+                    type="submit"
+                    class="btn btn-success btn-lg">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Update Task
+
+                </button>
+
+                <a
+                    href="/tasks"
+                    class="btn btn-secondary btn-lg">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

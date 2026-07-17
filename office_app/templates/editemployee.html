@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h4 class="mb-4"><i class="bi bi-pencil-square"></i> Edit Employee</h4>
+
+<div class="card p-4">
+<form action="/updateemployee" method="POST" enctype="multipart/form-data">
+
+    <input type="hidden" name="employee_id" value="{{ employee.employee_id }}">
+
+    <div class="row g-3">
+
+        <div class="col-md-4">
+            <label class="form-label">Profile Picture</label>
+            {% if employee.profile_picture %}
+            <div class="mb-2">
+                <img src="{{ url_for('static', filename='uploads/employees/' ~ employee.profile_picture) }}"
+                     alt="{{ employee.employee_name }}" width="70" height="70"
+                     style="object-fit:cover; border-radius:50%;">
+            </div>
+            {% endif %}
+            <input type="file" name="profile_picture" class="form-control" accept="image/*">
+            <small class="text-muted">Leave empty to keep current photo.</small>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Employee Code</label>
+            <input type="text" name="employee_code" class="form-control" value="{{ employee.employee_code }}" required>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="employee_name" class="form-control" value="{{ employee.employee_name }}" required>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Department</label>
+            <input type="text" name="department" class="form-control" value="{{ employee.department }}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Designation</label>
+            <input type="text" name="designation" class="form-control" value="{{ employee.designation }}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Qualification</label>
+            <input type="text" name="qualification" class="form-control" value="{{ employee.qualification }}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" value="{{ employee.email }}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Mobile</label>
+            <input type="text" name="mobile" class="form-control" value="{{ employee.mobile }}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Blood Group</label>
+            <select name="blood_group" class="form-select">
+                <option value="">Select</option>
+                {% for bg in ['A+','A-','B+','B-','O+','O-','AB+','AB-'] %}
+                <option {% if employee.blood_group == bg %}selected{% endif %}>{{ bg }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" name="date_of_birth" class="form-control" value="{{ employee.date_of_birth }}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Date of Joining</label>
+            <input type="date" name="date_of_joining" class="form-control" value="{{ employee.date_of_joining }}">
+        </div>
+
+        <div class="col-md-8">
+            <label class="form-label">Address</label>
+            <input type="text" name="address" class="form-control" value="{{ employee.address }}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Status</label>
+            <select name="status" class="form-select">
+                <option value="Active" {% if employee.status == 'Active' %}selected{% endif %}>Active</option>
+                <option value="Inactive" {% if employee.status == 'Inactive' %}selected{% endif %}>Inactive</option>
+            </select>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4">
+        <i class="bi bi-check-circle"></i> Update Employee
+    </button>
+    <a href="/employees" class="btn btn-secondary mt-4">Cancel</a>
+
+</form>
+</div>
+
+{% endblock %}

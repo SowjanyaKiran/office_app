@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>
+            <i class="bi bi-envelope-fill text-primary"></i>
+            Letter Management
+        </h2>
+
+        <div>
+            <a href="/addletter" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i>
+                Add Letter
+            </a>
+
+            <a href="/" class="btn btn-primary ms-2">
+                <i class="bi bi-house-fill"></i>
+                Dashboard
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <form action="/letters" method="GET">
+
+                <div class="input-group">
+
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control"
+                        placeholder="Search Letter"
+                        value="{{ request.args.get('search','') }}">
+
+                    <button class="btn btn-primary">
+                        <i class="bi bi-search"></i>
+                        Search
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="card shadow">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover align-middle mb-0">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Letter No</th>
+                        <th>Subject</th>
+                        <th>Received From</th>
+                        <th>Received Date</th>
+                        <th>Employee</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th class="text-center" style="width:120px;">Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for l in letters %}
+
+                <tr>
+
+                    <td>{{ l.letter_id }}</td>
+                    <td>{{ l.letter_no }}</td>
+                    <td>{{ l.subject }}</td>
+                    <td>{{ l.received_from }}</td>
+                    <td>{{ l.received_date }}</td>
+                    <td>{{ l.employee_name }}</td>
+
+                    <!-- Priority -->
+                    <td>
+                        {{ l.priority }}
+                    </td>
+
+                    <!-- Status -->
+                    <td>
+                        {{ l.status }}
+                    </td>
+
+                    <!-- Action -->
+                    <td class="text-center" style="width:120px;">
+
+                    <a href="/editletterstatus/{{ l.letter_id }}"
+                    class="btn btn-outline-primary btn-sm">
+
+                    <i class="bi bi-pencil-square"></i> Update
+
+                    </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

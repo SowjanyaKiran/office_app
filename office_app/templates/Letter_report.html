@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Letter Report</h2>
+
+<table class="table table-bordered table-striped">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>S.No</th>
+
+<th>Letter No</th>
+
+<th>Subject</th>
+
+<th>Received From</th>
+
+<th>Received Date</th>
+
+<th>Employee</th>
+
+<th>Priority</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for l in letters %}
+
+<tr>
+
+<td>{{ loop.index }}</td>
+
+<td>{{l.letter_no}}</td>
+
+<td>{{l.subject}}</td>
+
+<td>{{l.received_from}}</td>
+
+<td>{{l.received_date}}</td>
+
+<td>{{l.employee_name}}</td>
+
+<td>{{l.priority}}</td>
+
+<td>{{l.status}}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<a href="{{ url_for('reports') }}" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Back to Reports
+</a>
+{% endblock %}
